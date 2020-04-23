@@ -1,0 +1,72 @@
+<html lang="pt_br" 
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"> <!-- Configuração das Tags, Primefaces, JSF, HTML -->
+
+<h:head>
+   <meta charset="UTF-8" />
+   <title>Sisge - Sistema de Gestão Escolar</title>
+   <link rel="shortcut icon" href="favicon.ico" />
+   <ui:insert name="head"></ui:insert>
+</h:head>
+	<ui:insert name="cabecalho">
+		<div id="cabecalho">
+			  <h2 >Sisge - Sistema de Gestão Escolar</h2>
+		</div>
+	</ui:insert>
+
+<p:dialog modal="true" widgetVar="statusDialog" draggable="false" closable="false" resizable="false">
+   <h:graphicImage value="./imagens/loading.gif" />
+</p:dialog>
+
+<h:form id="formulario">
+   <script type="text/javascript"> 
+				PrimeFaces.locales['pt'] = {
+					closeText : 'Fechar',
+					prevText : 'Anterior',
+					nextText : 'Próximo',
+					currentText : 'Começo',
+					monthNames : [ 'Janeiro', 'Fevereiro', 'Março', 'Abril',
+							'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro',
+							'Outubro', 'Novembro', 'Dezembro' ],
+					monthNamesShort : [ 'Jan', 'Fev', 'Mar', 'Abr', 'Mai',
+							'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez' ],
+					dayNames : [ 'Domingo', 'Segunda', 'Terça', 'Quarta',
+							'Quinta', 'Sexta', 'Sábado' ],
+					dayNamesShort : [ 'Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex',
+							'Sáb' ],
+					dayNamesMin : [ 'D', 'S', 'T', 'Q', 'Q', 'S', 'S' ],
+					weekHeader : 'Semana',
+					firstDay : 1,
+					isRTL : false,
+					showMonthAfterYear : false,
+					yearSuffix : '',
+					timeOnlyTitle : 'Só Horas',
+					timeText : 'Tempo',
+					hourText : 'Hora',
+					minuteText : 'Minuto',
+					secondText : 'Segundo',
+					currentText : 'Data Atual',
+					ampm : false,
+					month : 'Mês',
+					week : 'Semana',
+					day : 'Dia',
+					allDayText : 'Todo Dia'
+				};
+			</script>
+      <br />
+      <br />
+   <div id="home">
+         <p:messages id="growl" showDetail="true" autoUpdate="true" />
+         <ui:insert name="body">
+         </ui:insert>
+         <p:remoteCommand update="@form" name="atualizarFormulario" />
+   </div>
+</h:form>
+<BR /><BR />
+<ui:insert name="footer">
+   <div id="footer" style="width: 95%; margin: 4 auto; text-align: center; font-size: 12px !important; border-radius:10px; box-shadow: rgba(0,0,0,0.2) 10px 10px; border: 1px solid bluegray; color: blue; ">Sisge © 2013 - Sistema de Gestão Escolar</div>
+</ui:insert>
+</html>

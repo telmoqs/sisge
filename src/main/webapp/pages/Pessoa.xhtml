@@ -1,0 +1,90 @@
+<ui:composition template="../template.xhtml"
+   xmlns="http://www.w3.org/1999/xhtml"
+   xmlns:f="http://java.sun.com/jsf/core"
+   xmlns:ui="http://java.sun.com/jsf/facelets"
+   xmlns:h="http://java.sun.com/jsf/html"
+   xmlns:p="http://primefaces.org/ui">
+   
+   <ui:param name="mbean" value="#{PessoaControl}" />
+
+   <ui:define name="body">
+      <h:panelGroup rendered="#{PessoaControl.ehTelaListar}">
+         <p:panel id="dadosConsulta" header="Dados para Consulta">
+            <h:panelGrid columns="2">
+               <h:outputText value="E-Mail:" />
+               <p:inputText value="#{PessoaControl.pessoa.email}" disabled="#{PessoaControl.ehAcaoConsultar}" />
+            </h:panelGrid>
+            <br />
+            <p:commandButton value="Listar" action="#{PessoaControl.atualizarLista}" update="tabelaPessoa" process="dadosConsulta" title="Listar Pessoas [Discente, Docente, Coordenador, Candidato]" />
+
+         </p:panel>
+
+         <p:dataTable var="pessoa" value="#{PessoaControl.pessoas}" id="tabelaPessoa" paginator="true" rows="10" paginatorPosition="bottom"
+            paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" rowsPerPageTemplate="10,20,30" emptyMessage="Nenhum registro na lista">
+
+            <p:column style="text-align:center;">
+               <f:facet name="header">
+                  <h:outputText value="E-Mail" />
+               </f:facet>
+               <h:outputText value="#{pessoa.email}" />
+            </p:column>
+
+            <p:column style="text-align:center;">
+               <f:facet name="header">
+                  <h:outputText value="Data de Cadastro" />
+               </f:facet>
+               <h:outputText value="#{pessoa.dataCadastro}">
+                  <f:convertDateTime pattern="dd/MM/yyyy" />
+               </h:outputText>
+            </p:column>
+
+            <p:column style="text-align:center;">
+               <f:facet name="header">
+                  <h:outputText value="Permitir Envio?" />
+               </f:facet>
+               <h:outputText value="#{pessoa.permitirEnvioEmail.descricao}" />
+            </p:column>
+
+            <p:column style="text-align:center; width:70px;">
+               <f:facet name="header">
+                  <h:outputText value="" />
+               </f:facet>
+               <p:commandLink action="#{PessoaControl.telaAlterar}" update="@form" title="Alterar">
+                  <h:graphicImage url="/imagens/icon-edit.png" />
+                  <f:setPropertyActionListener value="#{pessoa}" target="#{PessoaControl.pessoa}" />
+               </p:commandLink>
+               <p:commandLink action="#{PessoaControl.telaConsultar}" update="@form" title="Consultar">
+                  <h:graphicImage url="/imagens/icon-view.png" />
+                  <f:setPropertyActionListener value="#{pessoa}" target="#{PessoaControl.pessoa}" />
+               </p:commandLink>
+            </p:column>
+         </p:dataTable>
+         <br />
+         <p:commandButton value="Novo" action="#{PessoaControl.telaIncluir}" update="@form" />
+
+      </h:panelGroup>
+
+      <h:panelGroup rendered="#{PessoaControl.ehTelaCadastro}">
+         <p:panel>
+            <h:panelGrid columns="2">
+               <h:outputText value="E-Mail:" />
+               <p:inputText value="#{PessoaControl.pessoa.email}" disabled="#{PessoaControl.ehAcaoConsultar}" />
+
+               <h:outputText value="Permitir Envio?" />
+               <p:selectOneRadio value="#{PessoaControl.pessoa.permitirEnvioEmail}" disabled="#{PessoaControl.ehAcaoConsultar}">
+                  <f:selectItems value="#{ControleEnumerador.listaEnumSimNao}" var="item" itemLabel="#{item.descricao}" itemValue="#{item}" />
+               </p:selectOneRadio>
+
+               <h:outputLabel value="Digite uma Senha:" rendered="#{!PessoaControl.ehAcaoConsultar}" />
+               <p:password value="#{PessoaControl.pessoa.senha}" disabled="#{PessoaControl.ehAcaoConsultar}" rendered="#{!PessoaControl.ehAcaoConsultar}" style="width: 160pt !important;" />
+
+            </h:panelGrid>
+         </p:panel>
+         <h:panelGrid columns="2">
+            <p:commandButton value="Incluir" action="#{PessoaControl.incluir}" update="@form" rendered="#{PessoaControl.ehAcaoIncluir}" />
+            <p:commandButton value="Alterar" action="#{PessoaControl.alterar}" update="@form" rendered="#{PessoaControl.ehAcaoAlterar}" />
+            <p:commandButton value="Voltar" action="#{PessoaControl.telaListar}" update="@form" />
+         </h:panelGrid>
+      </h:panelGroup>
+   </ui:define>
+</ui:composition>
