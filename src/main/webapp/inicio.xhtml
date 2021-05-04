@@ -1,0 +1,42 @@
+<ui:composition template="template.xhtml" 
+   xmlns="http://www.w3.org/1999/xhtml"
+   xmlns:f="http://java.sun.com/jsf/core"
+   xmlns:ui="http://java.sun.com/jsf/facelets"
+   xmlns:h="http://java.sun.com/jsf/html"
+   xmlns:p="http://primefaces.org/ui">  <!-- fazemos a integração do arquivo template, na página inicio.xhml -->
+   
+   <ui:define name="body">
+      <div>
+         <h:form id="formulario">
+            <p:panel>
+               <h:outputText style="font-size: 160%; font-family: arial; color: blue;" value="Gestão Administrativa" />
+               <br></br>
+               <br></br>
+               <h:outputText style="color: red; font-size: 12px;" value="Antes de utilizar o sistema é necessário se cadastrar como usuário." />
+               <br></br>
+               <h:outputText style="color: red; font-size: 12px;" value="Certifique-se de informar seu e-mail corretamente, pois ele será utilizado no caso de ser solicitada a recuperação da senha." />
+               <p></p>
+               <h:outputText style="font-size: 90%;" value="Para alterar sua senha será necessário informar a senha atual. Caso tenha esquecido sua senha atual, utilize o recurso de recuperação de senha." />
+               <br></br>
+               <br></br>
+               <p:fieldset legend="Sisge - Sistema de Gestão Escolar" style="height: 200px;">
+                  <table border="0" width="100%">
+                     <tr>
+                        <td align="center"><h:commandButton id="link1" action="/Usuario.xhtml" image="/imagens/novo_usuario.png" style=" width: 100px;" /></td>
+                        <td align="center"><h:commandButton id="link2" action="login.jsp" image="/imagens/login.gif" immediate="true" style="width: 100px; " /></td>
+                        <td align="center"><h:commandButton id="link3" image="/imagens/recuperar_senha.png" action="RecuperarSenha.sisge" style="width: 100px; " /></td>
+                     </tr>
+                     <tr>
+                        <td align="center"><h:outputText style="font-size: 80%; font-family: arial; color: navy;" value="Cadastrar usuário" /></td>
+                        <td align="center"><h:outputText style="font-size: 80%; font-family: arial; color: navy;" value="Acessar o sistema" /></td>
+                        <td align="center"><h:outputText style="font-size: 80%; font-family: arial; color: navy;" value="Recuperar senha" /></td>
+                     </tr>
+                  </table>
+
+               </p:fieldset>
+
+            </p:panel>
+         </h:form>
+      </div>
+   </ui:define>
+</ui:composition>

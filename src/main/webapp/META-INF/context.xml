@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context
+    displayName="contextosisge"
+    path="/sisge"
+    reloadable="true" >
+    <Resource
+        name="jdbc/sisge"
+        auth="Container"
+        driverClassName="org.postgresql.Driver"
+        maxActive="10"
+        maxIdle="3"
+        password="123456"
+        type="javax.sql.DataSource"
+        url="jdbc:postgresql://localhost/sisge"
+        username="postgres" />
+</Context>
